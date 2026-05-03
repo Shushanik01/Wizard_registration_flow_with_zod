@@ -1,0 +1,26 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+input{
+    height: 35px;
+    border: 1.4px solid rgb(194, 190, 190);
+    border-radius: 5px;
+}
+
+input::placeholder{
+    font-style: normal;
+    font-size: smaller;
+    padding: 3px;
+}
+
+p {
+    margin: 1px;
+    font-family:'Times New Roman', Times, serif;
+}
+
+input:focus{
+    outline: none;
+}
