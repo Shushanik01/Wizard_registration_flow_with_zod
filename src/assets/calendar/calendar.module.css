@@ -1,0 +1,48 @@
+.react-datepicker {
+    width: 56px;
+
+}
+
+.react-datepicker__month-container {
+    width: 100%;
+}
+.react-datepicker__day {
+    width: 2rem;
+    margin: 0.1rem;
+}
+
+.react-datepicker__day-name {
+    width: 2rem;
+    margin: 0.1rem;
+}
+.react-datepicker__month {
+    height: 150px;  /* enough to always fit 6 rows */
+}
+:global(.react-datepicker__month) {
+    height: 180px;
+}
+
+:global(.react-datepicker__day) {
+    width: 2rem;
+    margin: 0.1rem;
+}
+
+:global(.react-datepicker__day-name) {
+    width: 2rem;
+    margin: 0.1rem;
+}
+img{
+    width: 30px;
+}
+
+.wrapper{
+    position: relative;
+    display: inline-block;
+}
+
+.datepickerWrapper{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+}
