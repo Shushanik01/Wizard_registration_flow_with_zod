@@ -1,4 +1,5 @@
-import styles from './stepIndicatoe.module.css'
+import styles from './stepIndicatoe.module.css';
+import { useState } from 'react';
 
 interface StepIndicatorProps {
     totalSteps: number,
@@ -7,6 +8,7 @@ interface StepIndicatorProps {
 
 const StepIndicator = ({ totalSteps, currentStep }: StepIndicatorProps) => {
 
+ 
     return (
         <div className={styles.wrapper}>
             {Array.from({ length: totalSteps }, (_, i) => (
@@ -23,3 +25,4 @@ const StepIndicator = ({ totalSteps, currentStep }: StepIndicatorProps) => {
         </div>
     )
 }
+export default StepIndicator
