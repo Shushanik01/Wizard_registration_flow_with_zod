@@ -2,11 +2,12 @@ import { useState } from 'react'
 import styles from './SelectForm.module.css'
 
 interface SelectFormProps {
-    placeholder: string,
-    options: (string | number)[]
+    placeholder?: string,
+    options?: (string | number)[],
+    onSelect?: (value: string | number) => void
 }
 
-const SelectForm = ({ placeholder, options }: SelectFormProps) => {
+const SelectForm = ({ placeholder = '', options = [], onSelect }: SelectFormProps) => {
 
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -27,6 +28,7 @@ const SelectForm = ({ placeholder, options }: SelectFormProps) => {
                 onChange={(e) => {
                     const index = options.findIndex(opt => String(opt) === e.target.value)
                     setSelectedIndex(index)
+                    onSelect?.(options[index])
                 }}
                 defaultValue='' required>
                 <option value="" disabled hidden>{placeholder}</option>
