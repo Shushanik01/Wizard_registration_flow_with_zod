@@ -1,0 +1,38 @@
+.wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aquamarine; */
+    width: fit-content;
+    padding: 60px;
+    margin: 60px auto;
+    border: 1px solid rgb(188, 185, 185);
+    border-radius: 20px;
+    background-color: azure;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nameField{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+p{
+    margin-top: 5px;
+}
+
+.birthSection{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.birthSection > *:last-child{
+    margin-left: auto;
+}

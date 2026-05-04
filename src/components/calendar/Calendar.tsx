@@ -4,7 +4,13 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import styles from './calendar.module.css'
 
-const Calendar = () => {
+
+
+interface CalendarProps {
+    onDateSelect?: (date: Date) => void
+}
+
+const Calendar = ({ onDateSelect }: CalendarProps) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState<Date | null>(null)
@@ -23,7 +29,10 @@ const Calendar = () => {
                     <DatePicker
                         selected={selectedDate}
                         onChange={(date) => {
-                            setSelectedDate(date)
+                            if (date) {
+                                setSelectedDate(date)
+                                onDateSelect?.(date)
+                            }
                             setIsOpen(false)
                         }}
                         inline

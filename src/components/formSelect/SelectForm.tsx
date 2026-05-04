@@ -1,15 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './SelectForm.module.css'
 
 interface SelectFormProps {
     placeholder?: string,
     options?: (string | number)[],
-    onSelect?: (value: string | number) => void
+    onSelect?: (value: string | number) => void,
+    value?: string | number
 }
 
-const SelectForm = ({ placeholder = '', options = [], onSelect }: SelectFormProps) => {
+const SelectForm = ({ placeholder = '', options = [], onSelect, value }: SelectFormProps) => {
 
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+    useEffect(() => {
+        if (value !== undefined) {
+            const index = options.findIndex(opt => String(opt) === String(value))
+            if (index !== -1) setSelectedIndex(index)
+        }
+    }, [value, options]);
 
     const handleUp = () => {
         if (selectedIndex === null) setSelectedIndex(0)
