@@ -10,7 +10,7 @@ interface FormInputProps {
     onChange: React.ChangeEventHandler<HTMLInputElement>
 }
 
-const FormInput = ({label, placeholder, type = 'text', 
+const FormInput = ({label, placeholder, type = 'text', name,
     value, onChange
 }:FormInputProps)=>{
 
@@ -19,7 +19,7 @@ const FormInput = ({label, placeholder, type = 'text',
             <p>{label}</p>
             <input
             type={type}
-            name=''
+            name={name}
             placeholder={placeholder}
             value={value}
             onChange={onChange}
