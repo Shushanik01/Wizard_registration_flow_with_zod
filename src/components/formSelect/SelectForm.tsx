@@ -4,11 +4,11 @@ import styles from './SelectForm.module.css'
 interface SelectFormProps {
     placeholder?: string,
     options?: (string | number)[],
-    onSelect?: (value: string | number) => void,
+    onChange: (value: string | number) => void,
     value?: string | number
 }
 
-const SelectForm = ({ placeholder = '', options = [], onSelect, value }: SelectFormProps) => {
+const SelectForm = ({ placeholder = '', options = [], onChange, value }: SelectFormProps) => {
 
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -36,7 +36,7 @@ const SelectForm = ({ placeholder = '', options = [], onSelect, value }: SelectF
                 onChange={(e) => {
                     const index = options.findIndex(opt => String(opt) === e.target.value)
                     setSelectedIndex(index)
-                    onSelect?.(options[index])
+                    onChange?.(options[index])
                 }}
                 defaultValue='' required>
                 <option value="" disabled hidden>{placeholder}</option>

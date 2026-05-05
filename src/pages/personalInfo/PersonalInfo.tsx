@@ -8,53 +8,106 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 const currentYear = new Date().getFullYear()
 const years = Array.from({ length: currentYear - 1900 + 1 }, (_, i) => currentYear - i)
 
+interface inputValuetate {
+    name: string,
+    surname: string,
+    email: string,
+    company: string,
+    address: string,
+    month: string,
+    day: number | null,
+    year: number | null
+}
+
 const PersonalInfo = () => {
     const [selectedMonth, setSelectedMonth] = useState<string | null>(null)
     const [selectedDay, setSelectedDay] = useState<number | null>(null)
-    const [selectedYear, setSelectedYear] = useState<number | null>(null)
+    const [selectedYear, setSelectedYear] = useState<number | null>(null);
+    const [inputValue, setInputValue] = useState<inputValuetate>(
+        {
+            name: '',
+            surname: '',
+            email: '',
+            company: '',
+            address: '',
+            month: '',
+            day: null,
+            year: null
+        }
+    )
 
-    const monthIndex = selectedMonth ? months.indexOf(selectedMonth) : -1
+    const monthIndex = inputValue.month ? months.indexOf(selectedMonth) : -1
     const daysInMonth = monthIndex >= 0
         ? new Date(selectedYear ?? 2000, monthIndex + 1, 0).getDate()
         : 31
     const days = Array.from({ length: daysInMonth }, (_, i) => i + 1)
 
     const handleDateSelect = (date: Date) => {
-        setSelectedMonth(months[date.getMonth()])
-        setSelectedDay(date.getDate())
-        setSelectedYear(date.getFullYear())
+      setInputValue(prev => ({
+        ...prev,
+        month: months[date.getMonth()],
+        day: date.getDate(),
+        year: date.getFullYear()
+      }))
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target
+    
+      setInputValue(prev => ({...prev, [name]: value}))
+    
     }
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
                 <div className={styles.nameField}>
-                    <FormInput label="First Name" placeholder='First Name' type="text" />
-                    <FormInput label="Last Name" placeholder="Last Name" type="text" />
+                    <FormInput label="First Name" placeholder='First Name' type="text"
+                        name = 'name'
+                        value={inputValue.name}
+                        onChange={handleInputChange} />
+                    <FormInput label="Last Name" placeholder="Last Name" type="text"
+                        name='surname'
+                        value={inputValue.surname}
+                        onChange={handleInputChange}
+                    />
                 </div>
-                <FormInput label="Email Address" placeholder='Email Address' type="text" />
-                <FormInput label="Company (if aplicable)" placeholder='Company' type="text" />
-                <FormInput label="Physical address" placeholder='Physical address' type="text" />
+                <FormInput label="Email Address" placeholder='Email Address' type="text"
+                    name='email'
+                    value={inputValue.email}
+                    onChange={handleInputChange}
+                />
+                <FormInput label="Company (if aplicable)" placeholder='Company' type="text"
+                    name='company'
+                    value={inputValue.company}
+                    onChange={handleInputChange}
+                />
+                <FormInput label="Physical address" placeholder='Physical address' type="text"
+                    name='address'
+                    value={inputValue.address}
+                    onChange={handleInputChange}
+                />
                 <p>Date of Birth</p>
                 <div className={styles.birthSection}>
                     <SelectForm
                         placeholder="Month"
                         options={months}
-                        value={selectedMonth ?? undefined}
-                        onSelect={(val) => setSelectedMonth(val as string)}
-                    />
+                        value={inputValue.month}
+                        onChange = {(val)=>setInputValue(prev => ({...prev, month: val as string}))}
+/>
                     <SelectForm
-                        key={selectedMonth}
+                        key={inputValue.month}
                         placeholder="Day"
                         options={days}
-                        value={selectedDay ?? undefined}
+                        value={inputValue.day}
+                        onChange={(val)=> setInputValue(prev => ({...prev, day: val as number}))}
                     />
                     <SelectForm
                         placeholder="Year"
                         options={years}
-                        value={selectedYear ?? undefined}
-                        onSelect={(val) => setSelectedYear(val as number)}
-                    />
+                        value={inputValue.year}
+                        onChange={(val)=> setInputValue(prev => ({...prev, year: val as number}))}
+/>
                     <Calendar onDateSelect={handleDateSelect} />
                 </div>
             </div>

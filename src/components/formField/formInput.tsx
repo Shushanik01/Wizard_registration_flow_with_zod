@@ -5,12 +5,13 @@ interface FormInputProps {
     label: string, 
     placeholder: string,
     type: string,
-    // value: string,
-    // onChange: React.ChangeEventHandler<HTMLInputElement>
+    name: string,
+    value: string,
+    onChange: React.ChangeEventHandler<HTMLInputElement>
 }
 
 const FormInput = ({label, placeholder, type = 'text', 
-    // value, onChange
+    value, onChange
 }:FormInputProps)=>{
 
     return (
@@ -18,9 +19,10 @@ const FormInput = ({label, placeholder, type = 'text',
             <p>{label}</p>
             <input
             type={type}
+            name=''
             placeholder={placeholder}
-            // value={value}
-            // onChange={onChange}
+            value={value}
+            onChange={onChange}
             />
         </section>
     )
