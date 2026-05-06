@@ -3,6 +3,9 @@ import FormInput from "../../components/formField/formInput";
 import SelectForm from "../../components/formSelect/SelectForm";
 import Calendar from "../../components/calendar/Calendar";
 import styles from './personalInfo.module.css';
+import { useForm } from 'react-hook-form';
+import {zodResolver } from '@hookform/resolvers/zod';
+import { personalInfoSchema } from './formValidation';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const currentYear = new Date().getFullYear()
@@ -56,7 +59,11 @@ const PersonalInfo = () => {
     
       setInputValue(prev => ({...prev, [name]: value}))
     
-    }
+    };
+
+    const {register, handleSubmit, formState:{errors}} = useForm({
+        resolver: zodResolver(personalInfoSchema)
+    });
 
     return (
         <div className={styles.wrapper}>
