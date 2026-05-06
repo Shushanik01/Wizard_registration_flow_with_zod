@@ -6,13 +6,15 @@ interface FormInputProps {
     placeholder: string,
     type: string,
     name: string,
-    value: string,
-    onChange: React.ChangeEventHandler<HTMLInputElement>
+    value?: string,
+    onChange?: React.ChangeEventHandler<HTMLInputElement>,
+    onBlur?: React.FocusEventHandler<HTMLInputElement>
 }
 
-const FormInput = ({label, placeholder, type = 'text', name,
-    value, onChange
-}:FormInputProps)=>{
+const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(({label, placeholder, type = 'text', name,
+    // value,
+     onChange, onBlur
+}, ref)=>{
 
     return (
         <section className={styles.container}>
@@ -21,10 +23,14 @@ const FormInput = ({label, placeholder, type = 'text', name,
             type={type}
             name={name}
             placeholder={placeholder}
-            value={value}
+            // value={value}
             onChange={onChange}
+            ref={ref}
+            onBlur={onBlur}
             />
         </section>
     )
 }
+)
+FormInput.displayName = "FormInput";
 export default FormInput
