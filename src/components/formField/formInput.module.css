@@ -6,8 +6,10 @@
 
 input{
     height: 35px;
+    width: 100%;
     border: 1.4px solid rgb(194, 190, 190);
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 input::placeholder{
@@ -23,4 +25,36 @@ p {
 
 input:focus{
     outline: none;
+}
+
+.inputWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.errorInput {
+    border-color: rgb(220, 50, 50) !important;
+}
+
+.errorMessage {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    font-size: 11px;
+    color: white;
+    background: rgb(220, 50, 50);
+    padding: 3px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 10;
+}
+
+.inputWrapper:hover .errorMessage,
+.inputWrapper:focus-within .errorMessage {
+    opacity: 1;
+    transform: translateY(0);
 }

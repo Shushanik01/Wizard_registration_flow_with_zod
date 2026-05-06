@@ -91,42 +91,47 @@ const PersonalInfo = () => {
                             {...register('name')}
                         // value={inputValue.name}
                         // onChange={handleInputChange}
+                        error={errors.name?.message}
                         />
 
-                        {errors.name && <span>{errors.name.message}</span>}
+                        {/* {errors.name && <span>{errors.name.message}</span>} */}
 
                         <FormInput label="Last Name" placeholder="Last Name" type="text"
                             // name='surname'
                             {...register('surname')}
                         // value={inputValue.surname}
                         // onChange={handleInputChange}
+                        error={errors.surname?.message}
                         />
 
-                        {errors.surname && <span>{errors.surname.message}</span>}
+                        {/* {errors.surname && <span>{errors.surname.message}</span>} */}
                     </div>
                     <FormInput label="Email Address" placeholder='Email Address' type="text"
                         // name='email'
                         // value={inputValue.email}
                         // onChange={handleInputChange}
                         {...register('email')}
+                        error={errors.email?.message}
                     />
 
-                    {errors.email && <span>{errors.email.message}</span>}
+                    {/* {errors.email && <span>{errors.email.message}</span>} */}
 
                     <FormInput label="Company (if aplicable)" placeholder='Company' type="text"
                         // name='company'
                         // value={inputValue.company}
                         // onChange={handleInputChange}
                         {...register('company')}
+                        error={errors.company?.message}
                     />
-                    {errors.company && <span>{errors.company.message}</span>}
+                    {/* {errors.company && <span>{errors.company.message}</span>} */}
                     <FormInput label="Physical address" placeholder='Physical address' type="text"
                         // name='address'
                         // value={inputValue.address}
                         // onChange={handleInputChange}
                         {...register('address')}
+                        error={errors.address?.message}
                     />
-                    {errors.address && <span>{errors.address.message}</span>}
+                    {/* {errors.address && <span>{errors.address.message}</span>} */}
                     <p>Date of Birth</p>
                     <div className={styles.birthSection}>
                         <SelectForm
