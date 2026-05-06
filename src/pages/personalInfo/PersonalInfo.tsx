@@ -23,7 +23,12 @@ const years = Array.from({ length: currentYear - 1900 + 1 }, (_, i) => currentYe
 //     year: number | null
 // }
 
-const PersonalInfo = () => {
+interface PersonalInfoProp {
+   step: number;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const PersonalInfo = ({step, setStep}: PersonalInfoProp) => {
     const [selectedMonth, setSelectedMonth] = useState<string | null>(null)
     const [selectedDay, setSelectedDay] = useState<number | null>(null)
     const [selectedYear, setSelectedYear] = useState<number | null>(null);
@@ -76,8 +81,9 @@ const PersonalInfo = () => {
 
     const onSubmit = (data: PersonalInfoData) => {
         console.log({ ...data, month: selectedMonth, day: selectedDay, year: selectedYear });
+         setStep(prev => prev + 1)
 
-    }
+    };
 
     return (
         <div className={styles.wrapper}>
@@ -156,7 +162,10 @@ const PersonalInfo = () => {
                         />
                         <Calendar onDateSelect={handleDateSelect} />
                     </div>
-                    <button type='submit'>Submit</button>
+                    <button
+                     type='submit'
+
+                     >Submit</button>
                 </form>
             </div>
         </div>

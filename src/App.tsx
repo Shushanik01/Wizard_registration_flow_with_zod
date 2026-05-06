@@ -5,13 +5,17 @@ import StepIndicator from "./components/stepIndicator/StepIndicator";
 import { useState } from "react";
 import PersonalInfo from "./pages/personalInfo/PersonalInfo";
 
+
+
 function App() {
 
+  const [step, setStep] = useState<number>(1)
   
 
   return (
     <>
-     <PersonalInfo/>
+     <PersonalInfo step={step} setStep={setStep}/>
+     <StepIndicator totalSteps={3} currentStep={step}/>
     </>
   )
 }
