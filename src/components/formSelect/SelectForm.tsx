@@ -38,7 +38,7 @@ const SelectForm = ({ placeholder = '', options = [], onChange, value }: SelectF
                     setSelectedIndex(index)
                     onChange?.(options[index])
                 }}
-                defaultValue='' required>
+                required>
                 <option value="" disabled hidden>{placeholder}</option>
                 {options.map(option => (
                     <option key={option} value={option}>{option}</option>

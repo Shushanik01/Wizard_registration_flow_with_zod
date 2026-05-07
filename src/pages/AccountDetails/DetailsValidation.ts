@@ -1,5 +1,4 @@
 import * as z from 'zod';
-import { da } from 'zod/v4/locales';
 
 export const AccountDetailsSchema = (step1Email:string)=>z.object({
     username: z.string().min(3, 'Name should include at least 3 characters')

@@ -1,28 +1,35 @@
 .wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin: 0 auto 32px;
+    padding: 0 24px;
 }
 
 .circle {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
-    border: 2px solid gray;
+    border: 1.5px solid #c0bebe;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: gray;
+    font-size: 12px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #b0abab;
+    background-color: #fff;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
 .active {
-    border-color: blue;
-    background-color: blue;
-    color: white;
+    border-color: #2c2c2c;
+    background-color: #2c2c2c;
+    color: #fff;
 }
 
 .line {
-    flex: 1;
-    height: 2px;
-    background-color: gray;
-    min-width: 40px;
+    width: 80px;
+    height: 1px;
+    background-color: #d8d5d5;
 }

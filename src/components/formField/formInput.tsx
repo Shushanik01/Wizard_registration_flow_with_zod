@@ -2,19 +2,19 @@ import React from 'react';
 import styles from './formInput.module.css';
 
 interface FormInputProps {
-    label: string, 
+    label: string,
     placeholder: string,
     type: string,
     name: string,
     value?: string,
     onChange?: React.ChangeEventHandler<HTMLInputElement>,
     onBlur?: React.FocusEventHandler<HTMLInputElement>,
-    error?: string
+    error?: string,
+    autoComplete?: string
 }
 
 const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(({label, placeholder, type = 'text', name,
-    // value,
-     onChange, onBlur, error
+    onChange, onBlur, error, autoComplete
 }, ref)=>{
 
     return (
@@ -25,10 +25,10 @@ const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(({label, pl
                     type={type}
                     name={name}
                     placeholder={placeholder}
-                    // value={value}
                     onChange={onChange}
                     ref={ref}
                     onBlur={onBlur}
+                    autoComplete={autoComplete}
                     className={error ? styles.errorInput : ''}
                 />
                 {error && <span className={styles.errorMessage}>{error}</span>}

@@ -35,6 +35,7 @@ const AcountDetails = ({ step1Email, setStep }: AccoundDetailsProps) => {
                         placeholder="Username"
                         type="text"
                         {...register('username')}
+                        autoComplete="username"
                         error={errors.username?.message}
                     />
                     <FormInput
@@ -42,6 +43,7 @@ const AcountDetails = ({ step1Email, setStep }: AccoundDetailsProps) => {
                         placeholder="Email"
                         type="text"
                         {...register('email')}
+                        autoComplete="email"
                         error={errors.email?.message}
                     />
                     <FormInput
@@ -49,6 +51,7 @@ const AcountDetails = ({ step1Email, setStep }: AccoundDetailsProps) => {
                         placeholder="Password"
                         type="password"
                         {...register('password')}
+                        autoComplete="new-password"
                         error={errors.password?.message}
                     />
                     <FormInput
@@ -56,6 +59,7 @@ const AcountDetails = ({ step1Email, setStep }: AccoundDetailsProps) => {
                         placeholder="Confirm Password"
                         type="password"
                         {...register('confirmPassword')}
+                        autoComplete="new-password"
                         error={errors.confirmPassword?.message}
                     />
                     <button type="submit" className={styles.submitButton}>Submit</button>

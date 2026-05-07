@@ -6,7 +6,8 @@ import styles from './personalInfo.module.css';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { personalInfoSchema } from './formValidation';
-import * as z from 'zod'
+import * as z from 'zod';
+import { useNavigate } from 'react-router-dom';
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const currentYear = new Date().getFullYear()
@@ -80,11 +81,13 @@ const PersonalInfo = ({step, setStep, step1Email, setStep1Email}: PersonalInfoPr
         resolver: zodResolver(personalInfoSchema)
     });
 
+ const navigate = useNavigate()
 
     const onSubmit = (data: PersonalInfoData) => {
         console.log({ ...data, month: selectedMonth, day: selectedDay, year: selectedYear });
          setStep(prev => prev + 1)
-        setStep1Email(data.email)
+        setStep1Email(data.email);
+        navigate('/details')
         };
 
     return (
