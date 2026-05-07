@@ -1,0 +1,24 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    gap: 12px;
+    text-align: center;
+}
+
+.title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #2c2c2c;
+    margin: 0;
+}
+
+.subtitle {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    color: #888;
+    margin: 0;
+}
