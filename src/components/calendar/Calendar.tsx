@@ -35,6 +35,7 @@ const Calendar = ({ onDateSelect }: CalendarProps) => {
                             }
                             setIsOpen(false)
                         }}
+                        maxDate={new Date()}
                         inline
                     />
                 </div>

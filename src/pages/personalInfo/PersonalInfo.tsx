@@ -9,8 +9,11 @@ import { personalInfoSchema } from './formValidation';
 import * as z from 'zod';
 import { useNavigate } from 'react-router-dom';
 
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-const currentYear = new Date().getFullYear()
+const allMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+const today = new Date()
+const currentYear = today.getFullYear()
+const currentMonth = today.getMonth()
+const currentDay = today.getDate()
 const years = Array.from({ length: currentYear - 1900 + 1 }, (_, i) => currentYear - i)
 
 // interface inputValuetate {
@@ -49,11 +52,17 @@ const PersonalInfo = ({step, setStep, step1Email, setStep1Email, setPersonalData
     //     }
     // )
 
-    const monthIndex = selectedMonth ? months.indexOf(selectedMonth) : -1
+    const months = selectedYear === currentYear
+        ? allMonths.slice(0, currentMonth + 1)
+        : allMonths
+
+    const monthIndex = selectedMonth ? allMonths.indexOf(selectedMonth) : -1
     const daysInMonth = monthIndex >= 0
         ? new Date(selectedYear ?? 2000, monthIndex + 1, 0).getDate()
         : 31
-    const days = Array.from({ length: daysInMonth }, (_, i) => i + 1)
+    const isCurrentMonthAndYear = selectedYear === currentYear && monthIndex === currentMonth
+    const maxDay = isCurrentMonthAndYear ? currentDay : daysInMonth
+    const days = Array.from({ length: maxDay }, (_, i) => i + 1)
 
     // const handleDateSelect = (date: Date) => {
     //     setInputValue(prev => ({
@@ -65,7 +74,7 @@ const PersonalInfo = ({step, setStep, step1Email, setStep1Email, setPersonalData
     // };
 
     const handleDateSelect = (date: Date) => {
-        setSelectedMonth(months[date.getMonth()])
+        setSelectedMonth(allMonths[date.getMonth()])
         setSelectedDay(date.getDate())
         setSelectedYear(date.getFullYear())
     }
