@@ -1,6 +1,7 @@
 import * as z from 'zod';
+import { da } from 'zod/v4/locales';
 
-export const AccountDetailsSchema = z.object({
+export const AccountDetailsSchema = (step1Email:string)=>z.object({
     username: z.string().min(3, 'Name should include at least 3 characters')
         .max(20, 'Name should not be longer than 20 characters')
         .regex(/^[A-Za-z0-9_]+$/, 'Only letters, numbers, and underscores are allowed'),
@@ -15,4 +16,7 @@ export const AccountDetailsSchema = z.object({
 }).refine(data => data.password === data.confirmPassword, {
     message: 'Passwords do not much',
     path:['confirmPassword']
-});
+}).refine(data => data.email === step1Email, {
+    message: 'Emails do not match',
+    path: ['email']
+})
