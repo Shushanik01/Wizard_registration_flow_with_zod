@@ -28,10 +28,11 @@ interface PersonalInfoProp {
    step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   step1Email: string;
-  setStep1Email:React.Dispatch<React.SetStateAction<string>>
+  setStep1Email:React.Dispatch<React.SetStateAction<string>>,
+  setPersonalData: React.Dispatch<React.SetStateAction<object>>
 }
 
-const PersonalInfo = ({step, setStep, step1Email, setStep1Email}: PersonalInfoProp) => {
+const PersonalInfo = ({step, setStep, step1Email, setStep1Email, setPersonalData}: PersonalInfoProp) => {
     const [selectedMonth, setSelectedMonth] = useState<string | null>(null)
     const [selectedDay, setSelectedDay] = useState<number | null>(null)
     const [selectedYear, setSelectedYear] = useState<number | null>(null);
@@ -87,7 +88,8 @@ const PersonalInfo = ({step, setStep, step1Email, setStep1Email}: PersonalInfoPr
         console.log({ ...data, month: selectedMonth, day: selectedDay, year: selectedYear });
          setStep(prev => prev + 1)
         setStep1Email(data.email);
-        navigate('/details')
+        navigate('/details');
+        setPersonalData(data)
         };
 
     return (
@@ -95,6 +97,7 @@ const PersonalInfo = ({step, setStep, step1Email, setStep1Email}: PersonalInfoPr
             <div className={styles.container}>
                 <form
                 onSubmit={handleSubmit(onSubmit)}
+                
                 >
                     <div className={styles.nameField}>
                         <FormInput label="First Name" placeholder='First Name' type="text"

@@ -4,14 +4,16 @@ import { useForm } from "react-hook-form";
 import { AccountDetailsSchema } from "./DetailsValidation";
 import * as z from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 
 
 interface AccoundDetailsProps {
     step1Email: string,
-    setStep: React.Dispatch<React.SetStateAction<number>>
+    setStep: React.Dispatch<React.SetStateAction<number>>,
+    setAccountData: React.Dispatch<React.SetStateAction<object>>
 }
 
-const AcountDetails = ({ step1Email, setStep }: AccoundDetailsProps) => {
+const AcountDetails = ({ step1Email, setStep, setAccountData }: AccoundDetailsProps) => {
 
     const schema = AccountDetailsSchema(step1Email)
 
@@ -21,10 +23,15 @@ const AcountDetails = ({ step1Email, setStep }: AccoundDetailsProps) => {
         resolver: zodResolver(schema)
     });
 
+    const navigate = useNavigate()
+
     const onSubmit = (data: AccountDetailsData)=>{
         console.log(data);
-        setStep(prev => prev + 1)
-    }
+        setStep(prev => prev + 1);
+        setAccountData(data);
+        navigate('/review')
+    };
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.container}>
